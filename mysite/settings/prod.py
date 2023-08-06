@@ -9,26 +9,19 @@ ADMINS = [
 
 ALLOWED_HOSTS = ['*']
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db", # set in docker-compose.yml
+        "PORT": 5432, # default postgres port
     }
 }
 
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "postgres",
-#         "USER": "postgres",
-#         "PASSWORD": "postgres",
-#         "HOST": "db", # set in docker-compose.yml
-#         "PORT": 5432, # default postgres port
-#     }
-# }
-
 # Security config
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
