@@ -7,7 +7,7 @@ ADMINS = [
     ('Mahmoud', 'occzz123@gmail.com'),
 ]
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
