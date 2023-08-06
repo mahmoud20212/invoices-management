@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2>قائمة الفواتير</h2>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <!-- <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+            <div class="btn-group me-2">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-outline-success rounded-start"><i class="fa-regular fa-floppy-disk"></i> حفظ</button>
+                <label for="file" class="btn btn-sm btn-outline-secondary">
+                    <input id="file" class="d-none" type="file" name="excel_file" required><i class="fa-solid fa-file-csv"></i> رفع ملف
+                </label>
+            </div>
+        </form> -->
+        <!-- <button type="button"
+                class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
+                <svg class="bi">
+                    <use xlink:href="#calendar3" />
+                </svg>
+                هذا الأسبوع
+            </button> -->
+    </div>
+</div>
+
+
+<div class="table-responsive small">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col"><i class="fa-solid fa-user"></i> الاسم </th>
+                <th scope="col"><i class="fa-solid fa-percent"></i> الضريبة</th>
+                <th scope="col"> القيمة</th>
+                <th scope="col"><i class="fa-solid fa-signal"></i> الحالة</th>
+                <th scope="col"><i class="fa-solid fa-calendar-days"></i> التاريخ</th>
+                <th scope="col"><i class="fa-solid fa-receipt"></i> رقم الفاتورة</th>
+                <th scope="col"><i class="fa-solid fa-pen"></i> ملاحظة</th>
+                <th scope="col"><i class="fa-solid fa-phone"></i> رقم الهاتف</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for invoice in invoices %}
+            <tr>
+                <td>{{ invoice.name }}</td>
+                <td>%15</td>
+                <td>{{ invoice.total }}</td>
+                <td>
+                    {% if invoice.status == 'P' %}
+                    <span class="badge bg-success">مدفوعة</span>
+                    {% elif invoice.status == 'U' %}
+                    <span class="badge bg-danger">غير مدفوعة</span>
+                    {% endif %}
+                </td>
+                <td>{{ invoice.invoice_date|date:"Y-m-d" }}</td>
+                <td>{{ invoice.invoice_number }}</td>
+                <td>{{ invoice.all_total }}</td>
+                <td>
+                    {% if invoice.mobile_number %}
+                        {{ invoice.mobile_number }}+
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td class="d-flex gap-1">
+                    <a href="{% url 'edit' invoice.pk %}" class="btn btn-sm btn-dark"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <form action="{% url 'delete' invoice.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="text-center" colspan="9">لا يوجد فواتير</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!-- Start pagination -->
+{% include 'pagination.html' with page=invoices %}
+<!-- End pagination -->
+{% endblock content %}

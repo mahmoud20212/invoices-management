@@ -1,0 +1,139 @@
+{% load static %}
+<html dir="rtl">
+<body>
+    <div 
+        style="{% if color_text_section_1 %}color: {{ color_text_section_1 }};{% endif %} {% if color_background_section_1 %}background-color: {{ color_background_section_1 }};{% endif %}"
+        class="header">
+        <div class="flex-1">
+            <img class="header__img" src="{{ invoice.store.logo.url }}">
+        </div>
+        <div class="flex-1">
+            <h4 style="margin: 0 0 5px 0;">{{ invoice.store.name }}</h4>
+            <b>الرقم الضريبي</b>
+            {{ invoice.store.tax_number }}
+            <br>
+            {{ invoice.store.address }}
+            <!-- <br>
+            مكة مكة 123456789 -->
+        </div>
+    </div>
+
+    <div class="flex-between section-hero" style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}{% if color_background_section_2 %}background-color: {{ color_background_section_2 }};{% else %}background-color: #eee; {% endif %}padding: 10px;margin-top: 16px;">
+        <div class="flex-1">
+            <h3 class="m-0">
+                فاتورة الى
+            </h3>
+            <div style="text-align: right;">
+                <div>
+                    <b>{{ invoice.name }}</b>
+                </div>
+                <div>
+                    الرقم الضريبي {{ invoice.tax_number }}
+                </div>
+                <div>
+                    {{ invoice.address_one }}
+                </div>
+                <div>
+                    {{ invoice.address_two }}
+                </div>
+                <div>
+                    {{ invoice.city }}
+                </div>
+            </div>
+        </div>
+        <div class="flex-1">
+            <p style="margin-top: 25px;">
+                <div>
+                    <b>رقم الفاتورة:</b>
+                    {{ invoice.invoice_number }}
+                </div>
+                <div>
+                    <b>تاريخ الفاتورة:</b>
+                    {{ invoice.created_at|date:"Y/m/d" }}
+                </div>
+                <div>
+                    <b>تاريخ الإستحقاق:</b>
+                    {{ invoice.due_date|date:"Y/m/d" }}
+                </div>
+                <div>
+                    <b>الحالة:</b>
+                    {% if invoice.status == 'P' %}
+                        <span>مدفوع </span>
+                    {% else %}
+                        <span>غير مدفوع </span>
+                    {% endif %}
+                </div>
+                <div>
+                    <b>تاريخ التوريد:</b>
+                    {{ invoice.date_of_supply|date:"Y/m/d" }}
+                </div>
+            </p>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr style="{% if color_text_top_bar %}color: {{ color_text_top_bar }};{% endif %}{% if color_background_top_bar %}background-color: {{ color_background_top_bar }};{% endif %}">
+                <th>البند</th>
+                <th>الوصف</th>
+                <th>بيان نسبة الضريبة</th>
+                <th>سعر الوحدة</th>
+                <th>الكمية</th>
+                <th>الإجمالي</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in invoice.products.all %}
+            <tr class="row{% cycle  '1' '2' %}">
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>
+                    %15
+                </td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.total }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td style="text-align: center;" colspan="6">لا يوجد منتجات</td>
+            </tr>
+            {% endfor %}
+            <tr style="{% if color_text_bottom_bar %}color: {{ color_text_bottom_bar }};{% endif %}{% if color_background_bottom_bar %}background-color: {{ color_background_bottom_bar }};{% endif %}" class="total">
+                <td colspan="5">
+                    الاجمالي
+                </td>
+                <td colspan="1">
+                    {{ invoice.total }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="other" style="width: fit-content; display: flex; flex-direction: column; margin-right: auto;">
+        <div class="border-bottom d-flex gap-3 p-5">
+            <div class="w-50"><b>الاجمالي</b></div>
+            <div class="w-50">{{ invoice.total }} ر.س</div>
+        </div>
+        <div class="border-bottom d-flex gap-3 p-5">
+            <div class="w-50"><b>القيمة المضافة (15%)</b></div>
+            <div class="w-50">{{ invoice.tax }} ر.س</div>
+        </div>
+        <div class="border-bottom d-flex gap-3 p-5">
+            <div class="w-50"><b>الإجمالي</b></div>
+            <div class="w-50">{{ invoice.all_total }} ر.س</div>
+        </div>
+        <div class="border-bottom d-flex gap-3 p-5">
+            <div class="w-50"><b>مدفوع</b></div>
+            <div class="w-50">0.00 ر.س</div>
+        </div>
+        <div class="border-bottom d-flex gap-3 p-5">
+            <div class="w-50"><b>الرصيد المستحق</b></div>
+            <div class="w-50">{{ invoice.all_total }} ر.س</div>
+        </div>
+    </div>
+    <span class="{% if invoice.status == 'P' %}paid{% else %}pending{% endif %}">
+        {% if invoice.status == 'P' %} مدفوع {% else %} غير مدفوع {% endif %}
+    </span>
+</body>
+
+</html>

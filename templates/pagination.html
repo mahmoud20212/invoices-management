@@ -1,0 +1,13 @@
+<div class="mt-2 mb-4 text-center">
+    {% if page.has_previous %}
+    <a class="btn btn-sm btn-secondary bg-secondary" href="?page={{page.previous_page_number}}"><i class="fa-solid fa-forward"></i></a>
+    {% else %}
+    <a class="btn btn-sm btn-secondary bg-secondary disabled" href=""><i class="fa-solid fa-forward"></i></a>
+    {% endif %}
+    <span class="px-4">{{page.number}} من {{page.paginator.num_pages}}</span>
+    {% if page.has_next %}
+    <a class="btn btn-sm btn-secondary bg-secondary" href="?page={{page.next_page_number}}"><i class="fa-solid fa-backward"></i></a>
+    {% else %}
+    <a class="btn btn-sm btn-secondary bg-secondary disabled" href="#"><i class="fa-solid fa-backward"></i></a>
+    {% endif %}
+</div>

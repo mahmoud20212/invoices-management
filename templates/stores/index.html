@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2>قائمة المتاجر</h2>
+    <!-- <div class="btn-toolbar mb-2 mb-md-0">
+        <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+        <div class="btn-group me-2">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-outline-success rounded-start"><i class="fa-regular fa-floppy-disk"></i> حفظ</button>
+            <label for="file" class="btn btn-sm btn-outline-secondary">
+                <input id="file" class="d-none" type="file" name="excel_file" required><i class="fa-solid fa-file-csv"></i> رفع ملف
+            </label>
+            </div>
+        </form>
+    </div> -->
+</div>
+
+
+<div class="table-responsive small">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col"> شعار المتجر</th>
+                <th scope="col"> إسم المتجر</th>
+                <th scope="col"> الرقم الضريبي</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for store in stores %}
+            <tr>
+                <td class="table-cell align-middle">
+                    <img class="rounded" width="60" src="{{ store.logo.url }}" alt="{{ store.name }}">
+                </td>
+                <td class="table-cell align-middle">{{ store.name }}</td>
+                <td class="table-cell align-middle">{{ store.tax_number }}</td>
+                <td class="table-cell align-middle">
+                    <div class="d-flex gap-1">
+                        <a href="{% url 'stores:edit' store.slug %}" class="btn btn-sm btn-dark"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <form action="{% url 'stores:delete' store.id %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="text-center" colspan="9">لا يوجد متاجر</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!-- Start pagination -->
+{% include 'pagination.html' with page=stores %}
+<!-- End pagination -->
+{% endblock content %}

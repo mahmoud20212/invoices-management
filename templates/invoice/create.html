@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom gap-3">
+    <h2>فاتورة جديدة</h2>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group">
+            <button type="submit" form="invoice_form" class="btn btn-outline-success"><i class="fa-regular fa-floppy-disk"></i> حفظ </button>
+        </div>
+    </div>
+</div>
+<form action="" method="POST" id="invoice_form">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="{{ form.store.id_for_label }}" class="form-label"> المتجر</label>
+        {{ form.store }}
+        {% if form.store.errors %}
+            {% for error in form.store.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="tax_number" class="form-label"><i class="fa-solid fa-file-invoice"></i> رقم الضريبي</label>
+                <input type="number" name="tax_number" class="form-control {% if form.tax_number.errors %} is-invalid {% endif %}" {% if form.tax_number.value %} value="{{ form.tax_number.value }}" {% endif %} id="tax_number">
+                {% if form.tax_number.errors %}
+                    {% for error in form.tax_number.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="name" class="form-label"><i class="fa-solid fa-user"></i> الإسم</label>
+                <input type="text" name="name" class="form-control {% if form.name.errors %} is-invalid {% endif %}" {% if form.name.value %} value="{{ form.name.value }}" {% endif %} id="name">
+                {% if form.name.errors %}
+                    {% for error in form.name.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="address_one" class="form-label"><i class="fa-solid fa-location-dot"></i> العنوان الأول</label>
+                <input type="text" name="address_one" class="form-control {% if form.address_one.errors %} is-invalid {% endif %}" {% if form.address_one.value %} value="{{ form.address_one.value }}" {% endif %} id="address_one">
+                {% if form.address_one.errors %}
+                    {% for error in form.address_one.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="address_two" class="form-label"><i class="fa-solid fa-location-dot"></i> العنوان الثاني</label>
+                <input type="text" id="address_two" name="address_two" class="form-control {% if form.address_two.errors %} is-invalid {% endif %}" {% if form.address_two.value %} value="{{ form.address_two.value }}" {% endif %}>
+                {% if form.address_two.errors %}
+                    {% for error in form.address_two.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="city" class="form-label"><i class="fa-solid fa-city"></i> المدينة</label>
+                <input type="text" name="city" class="form-control {% if form.city.errors %} is-invalid {% endif %}" {% if form.city.value %} value="{{ form.city.value }}" {% endif %} id="city">
+                {% if form.city.errors %}
+                    {% for error in form.city.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="mobile_number" class="form-label"><i class="fa-solid fa-phone"></i> رقم الهاتف</label>
+                <input type="number" name="mobile_number" class="form-control {% if form.mobile_number.errors %} is-invalid {% endif %}" {% if form.mobile_number.value %} value="{{ form.mobile_number.value }}" {% endif %} id="city">
+                {% if form.mobile_number.errors %}
+                    {% for error in form.mobile_number.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <hr class="my-3">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="invoice_number" class="form-label"><i class="fa-solid fa-receipt"></i> رقم الفاتورة</label>
+                <input type="number" name="invoice_number" class="form-control {% if form.invoice_number.errors %} is-invalid {% endif %}" {% if form.invoice_number.value %} value="{{ form.invoice_number.value }}" {% endif %} id="invoice_number">
+                {% if form.invoice_number.errors %}
+                    {% for error in form.invoice_number.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="status" class="form-label"><i class="fa-solid fa-signal"></i> الحالة</label>
+                <select name="status" class="form-control {% if form.status.errors %} is-invalid {% endif %}" id="status">
+                    <option {% if not form.status.value %} selected {% endif %} value="">---------</option>
+                    <option {% if 'U' == form.status.value %} selected {% endif %} value="U">غير مدفوع</option>
+                    <option {% if 'P' == form.status.value %} selected {% endif %} value="P">مدفوع</option>
+                </select>
+                {% if form.status.errors %}
+                    {% for error in form.status.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="invoice_date" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الفاتورة</label>
+                <input type="date" name="invoice_date" class="form-control {% if form.invoice_date.errors %} is-invalid {% endif %}" {% if form.invoice_date.value %} value="{{ form.invoice_date.value|date:'Y-m-d' }}" {% endif %} id="invoice_date">
+                {% if form.invoice_date.errors %}
+                    {% for error in form.invoice_date.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="due_date" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الاستحقاق</label>
+                <input type="date" name="due_date" class="form-control {% if form.due_date.errors %} is-invalid {% endif %}" {% if form.due_date.value %} value="{{ form.due_date.value|date:'Y-m-d' }}" {% endif %} id="due_date">
+                {% if form.due_date.errors %}
+                    {% for error in form.due_date.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <label for="date_of_supply" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ التوريد</label>
+                <input type="date" name="date_of_supply" class="form-control {% if form.date_of_supply.errors %} is-invalid {% endif %}" {% if form.date_of_supply.value %} value="{{ form.date_of_supply.value|date:'Y-m-d' }}" {% endif %} id="date_of_supply">
+                {% if form.date_of_supply.errors %}
+                    {% for error in form.date_of_supply.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}
