@@ -11,6 +11,7 @@ WORKDIR /code
 
 # Install dependencies
 COPY ./requirements.txt .
+RUN apt-get update && apt-get install -y libpangocairo-1.0-0
 RUN pip install -r requirements.txt
 
 # Copy project

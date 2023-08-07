@@ -40,3 +40,7 @@ wcwidth==0.2.6
 weasyprint==59.0
 webencodings==0.5.1
 zopfli==0.2.2
+psycopg2-binary==2.9.3
+
+# ======= Test =======
+django-debug-toolbar==4.1.0
