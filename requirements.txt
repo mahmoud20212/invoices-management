@@ -44,4 +44,4 @@ zopfli==0.2.2
 psycopg2-binary==2.9.3
 
 # ======= Test =======
-django-debug-toolbar==4.1.0
+# django-debug-toolbar==4.1.0
