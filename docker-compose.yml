@@ -26,7 +26,7 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-
+  
   rabbitmq:
     image: rabbitmq
     restart: always
@@ -47,6 +47,16 @@ services:
     depends_on:
       - rabbitmq
       - web
+  
+  nginx:
+    image: nginx:1.23.1
+    restart: always
+    volumes:
+      - ./config/nginx:/etc/nginx/templates
+      - .:/code
+    ports:
+      - "80:80"
+      - "443:443"
 
 volumes:
   postgres_data:
