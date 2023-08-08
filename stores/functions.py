@@ -27,7 +27,6 @@ def handle_excel_file(request, store):
             raise ValidationError('هذا الملف غير صالح.')
         
         df = pd.read_excel(excel_file)
-        format_specifier = "%Y-%m-%d"
         invoices = []
         for index, row in df.iterrows():
             if pd.isna(row['INVOICE NUMBER']) and pd.isna(row['MOBILE NUMBER']) and pd.isna(row['DATE']) and pd.isna(row['STATUS']):
@@ -37,6 +36,8 @@ def handle_excel_file(request, store):
             invoice_number = int(row['INVOICE NUMBER']) if not math.isnan(row['INVOICE NUMBER']) else None
             mobile_number = int(row['MOBILE NUMBER']) if not math.isnan(row['MOBILE NUMBER']) else None
             date_string = str(row['DATE'])
+            input_datetime = datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S")
+            output_date_string = input_datetime.strftime("%Y-%m-%d")
             invoices.append(
                 Invoice(
                     store = store,
@@ -48,9 +49,9 @@ def handle_excel_file(request, store):
                     address_two = fake.address(),
                     mobile_number = mobile_number,
                     city = fake.city(),
-                    due_date = datetime.strptime(date_string, format_specifier),
-                    invoice_date = datetime.strptime(date_string, format_specifier),
-                    date_of_supply = datetime.strptime(date_string, format_specifier),
+                    due_date = output_date_string,
+                    invoice_date = output_date_string,
+                    date_of_supply = output_date_string,
                 )
             )
         if len(invoices):
