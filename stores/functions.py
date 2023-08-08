@@ -29,28 +29,29 @@ def handle_excel_file(request, store):
         format_specifier = "%Y-%m-%d %H:%M:%S"
         invoices = []
         for index, row in df.iterrows():
-            if pd.isna(row['INVOICE NUMBER']):
+            if pd.isna(row['INVOICE NUMBER']) and pd.isna(row['MOBILE NUMBER']) and pd.isna(row['DATE']) and pd.isna(row['STATUS']):
                 continue
             
             status = 'P' if row['STATUS'] == 'مدفوعة' else 'U'
-            invoice = Invoice(
-                store = store,
-                tax_number = random.randint(0, 9999999999),
-                invoice_number = int(row['INVOICE NUMBER']),
-                status = status,
-                name = row['الاسم'],
-                address_one = fake.address(),
-                address_two = fake.address(),
-                mobile_number = int(row['MOBILE NUMBER']),
-                city = fake.city(),
-                due_date = datetime.strptime(row['DATE'], format_specifier),
-                invoice_date = datetime.strptime(row['DATE'], format_specifier),
-                date_of_supply = datetime.strptime(row['DATE'], format_specifier),
+            invoices.append(
+                Invoice(
+                    store = store,
+                    tax_number = random.randint(0, 9999999999),
+                    invoice_number = int(row['INVOICE NUMBER']),
+                    status = status,
+                    name = row['الاسم'],
+                    address_one = fake.address(),
+                    address_two = fake.address(),
+                    mobile_number = int(row['MOBILE NUMBER']),
+                    city = fake.city(),
+                    due_date = datetime.strptime(row['DATE'], format_specifier),
+                    invoice_date = datetime.strptime(row['DATE'], format_specifier),
+                    date_of_supply = datetime.strptime(row['DATE'], format_specifier),
+                )
             )
-            invoice.save()
-        # if len(invoices):
-        #     Invoice.objects.bulk_create(invoices)
-        # else:
-        #     raise ValidationError('لا يوجد بيانات في هذا الملف.')
+        if len(invoices):
+            Invoice.objects.bulk_create(invoices)
+        else:
+            raise ValidationError('لا يوجد بيانات في هذا الملف.')
     else:
         raise ValidationError('الرجاء ارفاق ملف لاستيراده.')
