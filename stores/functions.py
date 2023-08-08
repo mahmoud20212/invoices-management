@@ -35,9 +35,13 @@ def handle_excel_file(request, store):
             status = 'P' if row['STATUS'] == 'مدفوعة' else 'U'
             invoice_number = int(row['INVOICE NUMBER']) if not math.isnan(row['INVOICE NUMBER']) else None
             mobile_number = int(row['MOBILE NUMBER']) if not math.isnan(row['MOBILE NUMBER']) else None
-            date_string = str(row['DATE'])
-            input_datetime = datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S")
-            output_date_string = input_datetime.strftime("%Y-%m-%d")
+            if pd.notna(row['DATE']):
+                date_string = str(row['DATE'])
+                input_datetime = datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S")
+                output_date_string = input_datetime.strftime("%Y-%m-%d")
+            else:
+                output_date_string = None
+            
             invoices.append(
                 Invoice(
                     store = store,
