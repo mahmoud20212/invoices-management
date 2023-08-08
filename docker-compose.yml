@@ -26,8 +26,8 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     environment:
       - DJANGO_SETTINGS_MODULE=mysite.settings.prod
 
