@@ -18,7 +18,7 @@ class Invoice(models.Model):
     name = models.CharField(max_length=255)
     address_one = models.CharField(max_length=255)
     address_two = models.CharField(max_length=255)
-    mobile_number = models.IntegerField(validators=[MinValueValidator(0)])
+    mobile_number = models.BigIntegerField(validators=[MinValueValidator(0)])
     city = models.CharField(max_length=255)
     due_date  = models.DateField()
     invoice_date  = models.DateField()
