@@ -1,6 +1,7 @@
 import pandas as pd
-from datetime import datetime
 import random
+import math
+from datetime import datetime
 
 from faker import Faker
 
@@ -33,16 +34,18 @@ def handle_excel_file(request, store):
                 continue
             
             status = 'P' if row['STATUS'] == 'مدفوعة' else 'U'
+            invoice_number = int(row['INVOICE NUMBER']) if not math.isnan(row['INVOICE NUMBER']) else None
+            mobile_number = int(row['MOBILE NUMBER']) if not math.isnan(row['MOBILE NUMBER']) else None
             invoices.append(
                 Invoice(
                     store = store,
                     tax_number = random.randint(0, 9999999999),
-                    invoice_number = int(row['INVOICE NUMBER']),
+                    invoice_number = invoice_number,
                     status = status,
                     name = row['الاسم'],
                     address_one = fake.address(),
                     address_two = fake.address(),
-                    mobile_number = int(row['MOBILE NUMBER']),
+                    mobile_number = mobile_number,
                     city = fake.city(),
                     due_date = datetime.strptime(row['DATE'], format_specifier),
                     invoice_date = datetime.strptime(row['DATE'], format_specifier),
