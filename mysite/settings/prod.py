@@ -41,16 +41,17 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Rabbitmq config
-RABBITMQ = {
-    "PROTOCOL": "amqp", # in prod change with "amqps"
-    "HOST": os.getenv("RABBITMQ_HOST", "rabbitmq"),
-    "PORT": os.getenv("RABBITMQ_PORT", 5672),
-    "USER": os.getenv("RABBITMQ_USER", "guest"),
-    "PASSWORD": os.getenv("RABBITMQ_PASSWORD", "guest"),
-}
+# RABBITMQ = {
+#     "PROTOCOL": "amqp", # in prod change with "amqps"
+#     "HOST": os.getenv("RABBITMQ_HOST", "rabbitmq"),
+#     "PORT": os.getenv("RABBITMQ_PORT", 5672),
+#     "USER": os.getenv("RABBITMQ_USER", "guest"),
+#     "PASSWORD": os.getenv("RABBITMQ_PASSWORD", "guest"),
+# }
 
 # Celery config
-CELERY_BROKER_URL = f"{RABBITMQ['PROTOCOL']}://{RABBITMQ['USER']}:{RABBITMQ['PASSWORD']}@{RABBITMQ['HOST']}:{RABBITMQ['PORT']}/"
+# CELERY_BROKER_URL = f"{RABBITMQ['PROTOCOL']}://{RABBITMQ['USER']}:{RABBITMQ['PASSWORD']}@{RABBITMQ['HOST']}:{RABBITMQ['PORT']}/"
+CELERY_BROKER_URL = "redis://default:yEMviez2LFVJsDklKOR8@containers-us-west-61.railway.app:5570"
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_BACKEND = 'django-db'
