@@ -1,22 +1,22 @@
 version: "3.9" # Docker Compose version
 services:
-  db:
-    image: postgres:14.5
-    restart: always
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    ports:
-      - 5432:5432
+  # db:
+  #   image: postgres:14.5
+  #   restart: always
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data/
+  #   ports:
+  #     - 5432:5432
   
-  rabbitmq:
-    image: rabbitmq
-    restart: always
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+  # rabbitmq:
+  #   image: rabbitmq
+  #   restart: always
+  #   ports:
+  #     - "5672:5672"
+  #     - "15672:15672"
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=guest
+  #     - RABBITMQ_DEFAULT_PASS=guest
 
   web:
     build: .
@@ -39,11 +39,11 @@ services:
       - .:/code
     command: celery -A mysite worker -l info
     depends_on:
-      - rabbitmq
+      # - rabbitmq
       - web
-      - db
+      # - db
 
-volumes:
-  postgres_data:
+# volumes:
+#   postgres_data:
 
 
