@@ -2,6 +2,8 @@ amqp==5.1.1
 asgiref==3.7.2
 awesome-slugify==1.6.5
 billiard==4.1.0
+boto3==1.28.21
+botocore==1.31.21
 Brotli==1.0.9
 celery==5.3.1
 celery-progress==0.3
@@ -14,10 +16,12 @@ colorama==0.4.6
 cssselect2==0.7.0
 Django==4.2.3
 django-celery-results==2.5.1
+django-storages==1.13.2
 et-xmlfile==1.1.0
 Faker==19.2.0
 fonttools==4.41.1
 html5lib==1.1
+jmespath==1.0.1
 kombu==5.3.1
 numpy==1.25.2
 openpyxl==3.1.2
@@ -30,11 +34,13 @@ pyphen==0.14.0
 python-dateutil==2.8.2
 pytz==2023.3
 regex==2023.6.3
+s3transfer==0.6.1
 six==1.16.0
 sqlparse==0.4.4
 tinycss2==1.2.1
 tzdata==2023.3
 Unidecode==0.4.21
+urllib3==1.26.16
 vine==5.0.0
 wcwidth==0.2.6
 weasyprint==59.0
@@ -42,6 +48,3 @@ webencodings==0.5.1
 whitenoise==6.5.0
 zopfli==0.2.2
 psycopg2-binary==2.9.3
-
-# ======= Test =======
-# django-debug-toolbar==4.1.0
