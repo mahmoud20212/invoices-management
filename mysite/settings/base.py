@@ -34,6 +34,7 @@ LOCAL_APPS = [
 THIRD_PARTY_LIBRARIES = [
     'django_celery_results',
     'celery_progress',
+    'storages',
 ]
 
 DJANGO_APPS = [
