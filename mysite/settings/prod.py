@@ -13,11 +13,11 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
+        "NAME": "railway",
         "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "db", # set in docker-compose.yml
-        "PORT": 5432, # default postgres port
+        "PASSWORD": "TxWfipBM5jLlNKjPACFN",
+        "HOST": "containers-us-west-130.railway.app",
+        "PORT": 5838,
     }
 }
 
