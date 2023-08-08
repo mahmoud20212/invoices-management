@@ -12,8 +12,8 @@ class Invoice(models.Model):
         ('U', 'Unpaid'),
     )
     store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='invoices')
-    tax_number = models.IntegerField(validators=[MinValueValidator(0)])
-    invoice_number  = models.IntegerField(validators=[MinValueValidator(0)])
+    tax_number = models.BigIntegerField(validators=[MinValueValidator(0)])
+    invoice_number  = models.BigIntegerField(validators=[MinValueValidator(0)])
     status  = models.CharField(max_length=30, choices=INVOICE_STATUS, default='U')
     name = models.CharField(max_length=255)
     address_one = models.CharField(max_length=255)
