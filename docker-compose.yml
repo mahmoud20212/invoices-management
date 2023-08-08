@@ -11,13 +11,13 @@ services:
     depends_on:
       - db
     environment:
-      - DJANGO_SETTINGS_MODULE=mysite.settings.local
+      - DJANGO_SETTINGS_MODULE=mysite.settings.prod
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   
   db:
-    image: postgres:14
+    image: postgres:14.5
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
