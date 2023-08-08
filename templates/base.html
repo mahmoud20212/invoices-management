@@ -25,9 +25,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% block styles %}
     {% endblock styles %}
+    <script>
+        setTimeout(()=>{
+            var spinner = document.querySelector('.spinner-container');
+            spinner.style.display = 'none';
+        }, 1000)
+    </script>
 </head>
 
 <body>
+    <div class="bg-body spinner-container">
+        <div class="spinner"></div>
+    </div>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
             <path
@@ -318,12 +327,7 @@
             </main>
         </div>
     </div>
-    
-
     <script src="{% static 'dist/js/bootstrap.bundle.min.js' %}"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"
-        integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG"
-        crossorigin="anonymous"></script> -->
     <script src="{% static 'js/dashboard.js' %}"></script>
     {% block scripts %}
     {% endblock scripts %}
