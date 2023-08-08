@@ -116,13 +116,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'staticfiles'
-# ]
 
 # Media files config
 MEDIA_URL = 'media/'
@@ -153,16 +149,14 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_BACKEND = 'django-db'
 
 # AWS config
-AWS_ACCESS_KEY_ID = 'AKIAZP6WZFS3Z2UQR3EV'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'sisters-sotre'
+AWS_ACCESS_KEY_ID = 'AKIAZP6WZFS34BWJNFON'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'invoices-management-demo'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_DEFAULT_ACL = 'public-read'
+
 AWS_LOCATION = 'static'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_QUERYSTRING_AUTH = False
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
