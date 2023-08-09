@@ -9,7 +9,9 @@
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group">
             <button type="submit" form="invoice_form" class="btn btn-outline-success"><i class="fa-regular fa-floppy-disk"></i> حفظ </button>
+            {% if edit %}
             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa-solid fa-trash"></i> حذف المنتج</button>
+            {% endif %}
         </div>
     </div>
 </div>
