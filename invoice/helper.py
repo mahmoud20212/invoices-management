@@ -1,8 +1,8 @@
-import os
+# import os
 import weasyprint
 from django.template.loader import render_to_string
 from io import BytesIO
-from django.conf import settings
+# from django.conf import settings
 
 
 def generate_invoice_pdf(absolute_uri, invoice, *args, **kwargs):
