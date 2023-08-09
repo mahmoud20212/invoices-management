@@ -22,7 +22,7 @@ def generate_invoice_pdf(absolute_uri, invoice, *args, **kwargs):
     )
     out = BytesIO()
     stylesheets = [
-        weasyprint.CSS(os.path.join(settings.STATICFILES_DIRS, 'css/pdf.css'))
+        weasyprint.CSS('https://invoices-management-demo.s3.eu-west-2.amazonaws.com/static/css/pdf.css')
     ]
     weasyprint.HTML(string=html, base_url=absolute_uri).write_pdf(out, stylesheets=stylesheets)
     return out.getvalue()
