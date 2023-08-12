@@ -27,3 +27,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # INTERNAL_IPS = [
 #     '127.0.0.1',
 # ]
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'django-db'

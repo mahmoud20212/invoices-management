@@ -37,7 +37,7 @@ services:
     restart: always
     volumes:
       - .:/code
-    command: celery -A mysite worker -l info
+    command: celery -A mysite worker -l info --pool=solo
     depends_on:
       # - rabbitmq
       - web
