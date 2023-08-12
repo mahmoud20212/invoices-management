@@ -51,10 +51,10 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Celery config
 # CELERY_BROKER_URL = f"{RABBITMQ['PROTOCOL']}://{RABBITMQ['USER']}:{RABBITMQ['PASSWORD']}@{RABBITMQ['HOST']}:{RABBITMQ['PORT']}/"
-CELERY_BROKER_URL = "redis://default:yEMviez2LFVJsDklKOR8@containers-us-west-61.railway.app:5570"
+CELERY_BROKER_URL = "redis://default:6mDfkRiHZPoV03UtvqON@containers-us-west-130.railway.app:7721"
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = 'redis://default:W5eHYGZAxiSfrSM5K37S@containers-us-west-61.railway.app:7595'
+CELERY_RESULT_BACKEND = "redis://default:9bMp3rbdLhht1XQKNYex@containers-us-west-184.railway.app:6015"
 
 # django-db
 # Security config
