@@ -54,8 +54,9 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 CELERY_BROKER_URL = "redis://default:yEMviez2LFVJsDklKOR8@containers-us-west-61.railway.app:5570"
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_BACKEND = 'redis://default:W5eHYGZAxiSfrSM5K37S@containers-us-west-61.railway.app:7595'
 
+# django-db
 # Security config
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
