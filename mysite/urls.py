@@ -18,13 +18,15 @@ from django.contrib import admin
 from django.urls import path, re_path ,include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('invoice.urls')),
+    # path('admin/', admin.site.urls),
+    path('invoices/', include('invoice.urls')),
     path('products/', include('product.urls')),
     path('stores/', include('stores.urls')),
     re_path(r'^celery-progress/', include('celery_progress.urls')),
+    path('', RedirectView.as_view(url='stores/')),
 ]
 
 if settings.DEBUG:

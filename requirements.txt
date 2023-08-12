@@ -48,4 +48,4 @@ weasyprint==59.0
 webencodings==0.5.1
 whitenoise==6.5.0
 zopfli==0.2.2
-psycopg2-binary==2.9.3
+# psycopg2-binary==2.9.3

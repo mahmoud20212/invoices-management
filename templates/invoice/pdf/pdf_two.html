@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            color: #484b51;
+        }
+
+        table {
+            width:100%;
+            border-spacing:0;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table th, table td {
+            font-size: 12px;
+            padding: 5px 10px;
+            margin:0;
+        }
+
+        tbody tr:nth-child(odd) {
+            background:#efefef;
+        }
+
+        thead tr, tbody tr.total {
+            background:#5993bb;
+            color:#fff;
+            font-weight:bold;
+        }
+
+        .header__img {
+            border: 1px solid #000;
+            width: 80px;
+            border-radius: 3px;
+        }
+
+        .text-secondary-d1 {
+            color: #728299;
+        }
+
+        .page-title {
+            padding: 0;
+            margin: 0;
+            font-size: 1.75rem;
+            font-weight: 300;
+        }
+
+        .brc-default-l1 {
+            border-color: #dce9f0;
+        }
+
+        .ml-n1,
+        .mx-n1 {
+            margin-left: -.25rem;
+        }
+
+        .mr-n1,
+        .mx-n1 {
+            margin-right: -.25rem;
+        }
+
+        .mb-4,
+        .my-4 {
+            margin-bottom: 1.5rem;
+        }
+
+        hr {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border: 0;
+            border-top: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .text-grey-m2 {
+            color: #888a8d;
+        }
+
+        .text-success-m2 {
+            color: #86bd68;
+        }
+
+        .font-bolder,
+        .text-600 {
+            font-weight: 600;
+        }
+
+        .text-110 {
+            font-size: 110%;
+        }
+
+        .text-blue {
+            color: #478fcc;
+        }
+
+        .pb-25,
+        .py-25 {
+            padding-bottom: .75rem;
+        }
+
+        .pt-25,
+        .py-25 {
+            padding-top: .75rem;
+        }
+
+        .bgc-default-tp1 {
+            background-color: rgba(121, 169, 197, .92);
+        }
+
+        .bgc-default-l4,
+        .bgc-h-default-l4:hover {
+            background-color: #f3f8fa;
+        }
+
+        .btn-light {
+            color: #757984;
+            background-color: #f5f6f9;
+            border-color: #dddfe4;
+        }
+
+        .w-2 {
+            width: 1rem;
+        }
+
+        .text-120 {
+            font-size: 120%;
+        }
+
+        .text-primary-m1 {
+            color: #4087d4;
+        }
+
+        .text-danger-m1 {
+            color: #dd4949;
+        }
+
+        .text-blue-m2 {
+            color: #68a3d5;
+        }
+
+        .text-150 {
+            font-size: 150%;
+        }
+
+        .text-60 {
+            font-size: 60%;
+        }
+
+        .text-grey-m1 {
+            color: #7b7d81;
+        }
+
+        .align-bottom {
+            vertical-align: bottom;
+        }
+
+        .other {
+            width: 250px;
+            font-size: 12px;
+        }
+
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-1 {
+            flex: 1;
+        }
+
+        .border-bottom {
+            border-bottom: 2px solid #eee;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .gap-3 {
+            gap: 16px;
+        }
+
+        .m-0 {
+            margin: 0;
+        }
+
+        .p-c-5 {
+            padding: 5px;
+        }
+
+        .w-50 {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-100">
+        <div style="{% if color_text_section_1 %}color: {{ color_text_section_1 }};{% endif %} {% if color_background_section_1 %}background-color: {{ color_background_section_1 }};{% endif %}" class="d-flex justify-content-between align-items-center row p-3 rounded">
+            <img class="header__img" src="{{ invoice.store.logo.url }}">
+            <span style="text-align: center;" class="text-default-d3">
+                <div>{{ invoice.store.name }}</div>
+                <div>{{ invoice.store.tax_number }}</div>
+                <div>{{ invoice.store.address }}</div>
+            </span>
+            <div style="{% if color_text_section_1 %}color: {{ color_text_section_1 }};{% endif %}" class="text-secondary-d1">
+                رقم الفاتورة
+                <i class="fa fa-angle-double-left text-80"></i>
+                {{ invoice.invoice_number }}
+            </div>
+        </div>
+        <hr class="row brc-default-l1 mx-n1" />
+        <div class="row mt-2">
+            <div class="w-100">
+                <div style="{% if color_background_section_2 %}background-color: {{ color_background_section_2 }};{% endif %}" class="d-flex justify-content-between text-right p-3 rounded">
+                    <div>
+                        <div>
+                            <span style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="text-sm text-grey-m2 align-middle">الى:</span>
+                            <span style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="text-600 text-110 text-blue align-middle">
+                                {{ invoice.name }}
+                            </span>
+                        </div>
+                        <div class="text-right text-grey-m2">
+                            <ul style="list-style: none; margin-right: 0; padding-right: 25px; {% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}">
+                                {% if invoice.city %}
+                                <li>
+                                    {{ invoice.city }}
+                                </li>
+                                {% endif %}
+                                {% if invoice.address_one %}
+                                <li>
+                                    {{ invoice.address_one }}
+                                </li>
+                                {% endif %}
+                                {% if invoice.address_two %}
+                                <li>
+                                    {{ invoice.address_two }}
+                                </li>
+                                {% endif %}
+                                <li>
+                                    <i style="{% if color_text_section_2 %}color: {{ color_text_section_2 }} !important;{% endif %}" class="fa fa-phone fa-flip-horizontal text-secondary"></i> 
+                                    <span class="text-600">+{{ invoice.mobile_number }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-95">
+                        <div class="text-grey-m2 text-right">
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                فاتورة
+                            </div>
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="my-2">
+                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i>
+                                <span class="text-600 text-90">رقم: </span>
+                                {{ invoice.invoice_number }}
+                            </div>
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="my-2">
+                                <i class="fa fa-circle text-blue-m2 text-xs"></i>
+                                <span class="text-600 text-90">تاريخ الفاتورة: </span>
+                                {{ invoice.created_at|date:"Y/m/d" }}
+                            </div>
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="my-2">
+                                <i class="fa fa-circle text-blue-m2 text-xs"></i>
+                                <span class="text-600 text-90">الحالة: </span>
+                                <span class="badge badge-warning badge-pill px-25">
+                                    {% if invoice.status == 'P' %}
+                                        مدفوع 
+                                    {% else %}
+                                        غير مدفوع 
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="row brc-default-l1 mx-n1" />
+                <table class="text-right">
+                    <thead>
+                        <tr style="{% if color_text_top_bar %}color: {{ color_text_top_bar }};{% endif %}{% if color_background_top_bar %}background-color: {{ color_background_top_bar }};{% endif %}">
+                            <th>البند</th>
+                            <th>الوصف</th>
+                            <th>بيان نسبة الضريبة</th>
+                            <th>سعر الوحدة</th>
+                            <th>الكمية</th>
+                            <th>الإجمالي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in invoice.products.all %}
+                        <tr class="row{% cycle  '1' '2' %}">
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.description }}</td>
+                            <td>%15</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.total }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td style="text-align: center;" colspan="6">لا يوجد منتجات</td>
+                        </tr>
+                        {% endfor %}
+                        <tr style="{% if color_text_bottom_bar %}color: {{ color_text_bottom_bar }};{% endif %}{% if color_background_bottom_bar %}background-color: {{ color_background_bottom_bar }};{% endif %}" class="total">
+                            <td colspan="5">
+                                الاجمالي
+                            </td>
+                            <td colspan="1">
+                                {{ invoice.total }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row mt-3">
+                    <div class="other" style="font-size: 12px; width: fit-content; margin-right: auto; margin-left: 15px;">
+                        <div class="border-bottom d-flex gap-3 p-c-5">
+                            <div class="w-50"><b>الاجمالي</b></div>
+                            <div class="w-50">{{ invoice.total }} ر.س</div>
+                        </div>
+                        <div class="border-bottom d-flex gap-3 p-c-5">
+                            <div class="w-50"><b>القيمة المضافة (15%)</b></div>
+                            <div class="w-50">{{ invoice.tax }} ر.س</div>
+                        </div>
+                        <div class="border-bottom d-flex gap-3 p-c-5">
+                            <div class="w-50"><b>الإجمالي</b></div>
+                            <div class="w-50">{{ invoice.all_total }} ر.س</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

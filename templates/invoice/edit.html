@@ -93,17 +93,6 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="tax_number" class="form-label"><i class="fa-solid fa-file-invoice"></i> رقم الضريبي</label>
-                <input type="number" name="tax_number" class="form-control {% if form.tax_number.errors %} is-invalid {% endif %}" {% if form.tax_number.value %} value="{{ form.tax_number.value }}" {% endif %} id="tax_number">
-                {% if form.tax_number.errors %}
-                    {% for error in form.tax_number.errors %}
-                    <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="mb-3">
                 <label for="name" class="form-label"><i class="fa-solid fa-user"></i> الإسم</label>
                 <input type="text" name="name" class="form-control {% if form.name.errors %} is-invalid {% endif %}" {% if form.name.value %} value="{{ form.name.value }}" {% endif %} id="name">
                 {% if form.name.errors %}
@@ -124,8 +113,6 @@
                 {% endif %}
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
                 <label for="address_two" class="form-label"><i class="fa-solid fa-location-dot"></i> العنوان الثاني</label>
@@ -137,6 +124,8 @@
                 {% endif %}
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
                 <label for="city" class="form-label"><i class="fa-solid fa-city"></i> المدينة</label>
@@ -263,23 +252,15 @@
         <div class="sub-total-invoice">
             <div class="border-bottom d-flex gap-3 p-1">
                 <div class="w-50"><b>الاجمالي</b></div>
-                <div class="w-50">{{ invoice.total }} رس</div>
+                <div class="w-50">{{ invoice.total }} ر.س</div>
             </div>
             <div class="border-bottom d-flex gap-3 p-1">
                 <div class="w-50"><b>القيمة المضافة (15%)</b></div>
-                <div class="w-50">{{ invoice.tax }} رس</div>
+                <div class="w-50">{{ invoice.tax }} ر.س</div>
             </div>
             <div class="border-bottom d-flex gap-3 p-1">
                 <div class="w-50"><b>الإجمالي</b></div>
-                <div class="w-50">{{ invoice.all_total }} رس</div>
-            </div>
-            <div class="border-bottom d-flex gap-3 p-1">
-                <div class="w-50"><b>مدفوع</b></div>
-                <div class="w-50">0.00 رس</div>
-            </div>
-            <div class="border-bottom d-flex gap-3 p-1">
-                <div class="w-50"><b>الرصيد المستحق</b></div>
-                <div class="w-50">{{ invoice.all_total }} رس</div>
+                <div class="w-50">{{ invoice.all_total }} ر.س</div>
             </div>
         </div>
     </div>
@@ -296,6 +277,21 @@
             <form action="{% url 'export' invoice.id %}" method="POST">
                 {% csrf_token %}
                 <div class="modal-body">
+                    <div class="mb-3 pb-3 border-bottom">
+                        <label class="form-label">اختر نموذج الـ PDF</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="model_pdf" id="model_pdf_1" value="model_pdf_1" checked>
+                            <label class="form-check-label" for="model_pdf_1">
+                                نموذج الأول
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="model_pdf" id="model_pdf_2" value="model_pdf_2">
+                            <label class="form-check-label" for="model_pdf_2">
+                                نموذج الثاني
+                            </label>
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">لون نص القسم الأول</label>
                         <div class="bg-dark select-container rounded">

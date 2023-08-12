@@ -1,16 +1,15 @@
 # import pandas as pd
-import random
 import openpyxl
 from datetime import datetime
 
-from faker import Faker
+# from faker import Faker
 
 from django.core.validators import FileExtensionValidator
 from django.core.exceptions import ValidationError
 
 from invoice.models import Invoice
 
-fake = Faker()
+# fake = Faker()
 
 def read_excel_and_exclude_empty_rows(file_path):
     workbook = openpyxl.load_workbook(file_path)
@@ -68,17 +67,16 @@ def handle_excel_file(request, store):
             invoices.append(
                 Invoice(
                     store = store,
-                    tax_number = random.randint(0, 9999999),
                     invoice_number = invoice_number,
                     status = status,
                     name = name,
-                    address_one = fake.address(),
-                    address_two = fake.address(),
                     mobile_number = mobile_number,
-                    city = fake.city(),
-                    due_date = output_date_string,
                     invoice_date = output_date_string,
-                    date_of_supply = output_date_string,
+                    address_one = None,
+                    address_two = None,
+                    city = None,
+                    due_date = None,
+                    date_of_supply = None,
                 )
             )
         if len(invoices):

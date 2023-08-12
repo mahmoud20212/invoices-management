@@ -61,6 +61,7 @@ def create_task(request, store_id):
         'color_text_bottom_bar': request.POST.get('color_text_bottom_bar'),
         'color_background_bottom_bar': request.POST.get('color_background_bottom_bar'),
         'absolute_uri': request.build_absolute_uri(),
+        'model_pdf': request.POST.get('model_pdf'),
         'pk': store_id,
     }
 

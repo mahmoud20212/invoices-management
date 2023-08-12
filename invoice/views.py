@@ -87,7 +87,7 @@ def upload(request):
 
 @require_POST
 def export(request, pk):
-    colors = {
+    options = {
         'color_text_section_1': request.POST.get('color_text_section_1'),
         'color_background_section_1': request.POST.get('color_background_section_1'),
         'color_text_section_2': request.POST.get('color_text_section_2'),
@@ -96,12 +96,13 @@ def export(request, pk):
         'color_background_top_bar': request.POST.get('color_background_top_bar'),
         'color_text_bottom_bar': request.POST.get('color_text_bottom_bar'),
         'color_background_bottom_bar': request.POST.get('color_background_bottom_bar'),
+        'model_pdf': request.POST.get('model_pdf'),
     }
     
     invoice = get_object_or_404(Invoice, id=pk)
 
     absolute_uri = request.build_absolute_uri()
-    value = generate_invoice_pdf(absolute_uri, invoice, **colors)
+    value = generate_invoice_pdf(absolute_uri, invoice, **options)
 
     # Create an HTTP response with the PDF file as content.
     response = HttpResponse(content_type='application/pdf')

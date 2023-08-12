@@ -22,17 +22,6 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="tax_number" class="form-label"><i class="fa-solid fa-file-invoice"></i> رقم الضريبي</label>
-                <input type="number" name="tax_number" class="form-control {% if form.tax_number.errors %} is-invalid {% endif %}" {% if form.tax_number.value %} value="{{ form.tax_number.value }}" {% endif %} id="tax_number">
-                {% if form.tax_number.errors %}
-                    {% for error in form.tax_number.errors %}
-                    <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="mb-3">
                 <label for="name" class="form-label"><i class="fa-solid fa-user"></i> الإسم</label>
                 <input type="text" name="name" class="form-control {% if form.name.errors %} is-invalid {% endif %}" {% if form.name.value %} value="{{ form.name.value }}" {% endif %} id="name">
                 {% if form.name.errors %}
@@ -53,8 +42,6 @@
                 {% endif %}
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
                 <label for="address_two" class="form-label"><i class="fa-solid fa-location-dot"></i> العنوان الثاني</label>
@@ -66,6 +53,8 @@
                 {% endif %}
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
                 <label for="city" class="form-label"><i class="fa-solid fa-city"></i> المدينة</label>

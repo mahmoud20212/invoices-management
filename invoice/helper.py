@@ -6,8 +6,12 @@ from io import BytesIO
 
 
 def generate_invoice_pdf(absolute_uri, invoice, *args, **kwargs):
+    pdf_file = 'pdf_one'
+    if kwargs.get('model_pdf') == 'model_pdf_2':
+        pdf_file = 'pdf_two'
+    
     html = render_to_string(
-        'invoice/pdf/pdf_one.html',
+        f'invoice/pdf/{pdf_file}.html',
         {
             'invoice': invoice,
             'color_text_section_1': kwargs.get('color_text_section_1'),

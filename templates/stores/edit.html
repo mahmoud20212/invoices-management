@@ -281,6 +281,21 @@
                 {% csrf_token %}
                 <input type="checkbox" name="zip" checked hidden>
                 <div class="modal-body">
+                    <div class="mb-3 pb-3 border-bottom">
+                        <label class="form-label">اختر نموذج الـ PDF</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="model_pdf" id="model_pdf_1" value="model_pdf_1" checked>
+                            <label class="form-check-label" for="model_pdf_1">
+                                نموذج الأول
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="model_pdf" id="model_pdf_2" value="model_pdf_2">
+                            <label class="form-check-label" for="model_pdf_2">
+                                نموذج الثاني
+                            </label>
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">لون نص القسم الأول</label>
                         <div class="bg-dark select-container rounded">
