@@ -207,6 +207,7 @@
             <img class="header__img" src="{{ invoice.store.logo.url }}">
             <span style="text-align: center;" class="text-default-d3">
                 <div>{{ invoice.store.name }}</div>
+                <div>{{ invoice.store.commercial_record }}</div>
                 <div>{{ invoice.store.tax_number }}</div>
                 <div>{{ invoice.store.address }}</div>
             </span>
@@ -253,20 +254,39 @@
                     </div>
                     <div class="text-95">
                         <div class="text-grey-m2 text-right">
-                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="mt-1 text-secondary-m1 text-600 text-125">
                                 فاتورة
                             </div>
-                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="my-2">
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}">
                                 <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i>
                                 <span class="text-600 text-90">رقم: </span>
                                 {{ invoice.invoice_number }}
                             </div>
-                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="my-2">
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}">
                                 <i class="fa fa-circle text-blue-m2 text-xs"></i>
                                 <span class="text-600 text-90">تاريخ الفاتورة: </span>
-                                {{ invoice.created_at|date:"Y/m/d" }}
+                                {{ invoice.invoice_date|date:"Y/m/d" }}
+                                {% if invoice.invoice_time and invoice.show_invoice_time %}
+                                    / {{ invoice.invoice_time|time:'h:i A' }}
+                                {% endif %}
                             </div>
-                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}" class="my-2">
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}">
+                                <i class="fa fa-circle text-blue-m2 text-xs"></i>
+                                <span class="text-600 text-90">تاريخ الإستحقاق: </span>
+                                {{ invoice.due_date|date:"Y/m/d" }}
+                                {% if invoice.due_time and invoice.show_due_time %}
+                                    / {{ invoice.due_time|time:'h:i A' }}
+                                {% endif %}
+                            </div>
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}">
+                                <i class="fa fa-circle text-blue-m2 text-xs"></i>
+                                <span class="text-600 text-90">تاريخ التوريد: </span>
+                                {{ invoice.date_of_supply|date:"Y/m/d" }}
+                                {% if invoice.time_of_supply and invoice.show_time_of_supply %}
+                                    / {{ invoice.time_of_supply|time:'h:i A' }}
+                                {% endif %}
+                            </div>
+                            <div style="{% if color_text_section_2 %}color: {{ color_text_section_2 }};{% endif %}">
                                 <i class="fa fa-circle text-blue-m2 text-xs"></i>
                                 <span class="text-600 text-90">الحالة: </span>
                                 <span class="badge badge-warning badge-pill px-25">

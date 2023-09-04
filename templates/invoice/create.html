@@ -106,9 +106,18 @@
                 {% endif %}
             </div>
         </div>
+    </div>
+    <hr>
+    <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="invoice_date" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الفاتورة</label>
+                <div class="d-flex justify-content-between align-items-center">
+                    <label for="invoice_date" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الفاتورة</label>
+                    <div class="form-check form-switch">
+                        <input name="show_invoice_time" class="form-check-input" type="checkbox" role="switch" id="show_invoice_time" {% if form.show_invoice_time.value %} checked {% endif %}>
+                        <label class="form-check-label" for="show_invoice_time">عرض الوقت</label>
+                    </div>
+                </div>
                 <input type="date" name="invoice_date" class="form-control {% if form.invoice_date.errors %} is-invalid {% endif %}" {% if form.invoice_date.value %} value="{{ form.invoice_date.value|date:'Y-m-d' }}" {% endif %} id="invoice_date">
                 {% if form.invoice_date.errors %}
                     {% for error in form.invoice_date.errors %}
@@ -116,15 +125,10 @@
                     {% endfor %}
                 {% endif %}
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
             <div class="mb-3">
-                <label for="due_date" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الاستحقاق</label>
-                <input type="date" name="due_date" class="form-control {% if form.due_date.errors %} is-invalid {% endif %}" {% if form.due_date.value %} value="{{ form.due_date.value|date:'Y-m-d' }}" {% endif %} id="due_date">
-                {% if form.due_date.errors %}
-                    {% for error in form.due_date.errors %}
+                <input type="time" name="invoice_time" class="form-control {% if form.invoice_time.errors %} is-invalid {% endif %}" {% if form.invoice_time.value %} value="{{ form.invoice_time.value|time:'H:i' }}" {% endif %} id="invoice_time">
+                {% if form.invoice_time.errors %}
+                    {% for error in form.invoice_time.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
                     {% endfor %}
                 {% endif %}
@@ -132,10 +136,49 @@
         </div>
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="date_of_supply" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ التوريد</label>
+                <div class="d-flex justify-content-between align-items-center">
+                    <label for="due_date" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الاستحقاق</label>
+                    <div class="form-check form-switch">
+                        <input name="show_due_time" class="form-check-input" type="checkbox" role="switch" id="show_due_time" {% if form.show_due_time.value %} checked {% endif %}>
+                        <label class="form-check-label" for="show_due_time">عرض الوقت</label>
+                    </div>
+                </div>
+                <input type="date" name="due_date" class="form-control {% if form.due_date.errors %} is-invalid {% endif %}" {% if form.due_date.value %} value="{{ form.due_date.value|date:'Y-m-d' }}" {% endif %} id="due_date">
+                {% if form.due_date.errors %}
+                    {% for error in form.due_date.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <input type="time" name="due_time" class="form-control {% if form.due_time.errors %} is-invalid {% endif %}" {% if form.due_time.value %} value="{{ form.due_time.value|time:'H:i' }}" {% endif %} id="due_time">
+                {% if form.due_time.errors %}
+                    {% for error in form.due_time.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <label for="date_of_supply" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ التوريد</label>
+                    <div class="form-check form-switch">
+                        <input name="show_time_of_supply" class="form-check-input" type="checkbox" role="switch" id="show_time_of_supply" {% if form.show_time_of_supply.value %} checked {% endif %}>
+                        <label class="form-check-label" for="show_time_of_supply">عرض الوقت</label>
+                    </div>
+                </div>
                 <input type="date" name="date_of_supply" class="form-control {% if form.date_of_supply.errors %} is-invalid {% endif %}" {% if form.date_of_supply.value %} value="{{ form.date_of_supply.value|date:'Y-m-d' }}" {% endif %} id="date_of_supply">
                 {% if form.date_of_supply.errors %}
                     {% for error in form.date_of_supply.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <input type="time" name="time_of_supply" class="form-control {% if form.time_of_supply.errors %} is-invalid {% endif %}" {% if form.time_of_supply.value %} value="{{ form.time_of_supply.value|time:'H:i' }}" {% endif %} id="time_of_supply">
+                {% if form.time_of_supply.errors %}
+                    {% for error in form.time_of_supply.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
                     {% endfor %}
                 {% endif %}

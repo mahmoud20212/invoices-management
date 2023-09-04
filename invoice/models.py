@@ -23,6 +23,12 @@ class Invoice(models.Model):
     due_date  = models.DateField(null=True)
     invoice_date  = models.DateField()
     date_of_supply  = models.DateField(null=True)
+    due_time  = models.TimeField(null=True, blank=True)
+    invoice_time  = models.TimeField(null=True, blank=True)
+    time_of_supply  = models.TimeField(null=True, blank=True)
+    show_invoice_time = models.BooleanField(default=False)
+    show_due_time = models.BooleanField(default=False)
+    show_time_of_supply = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

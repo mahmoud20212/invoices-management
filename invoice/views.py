@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-# from django.urls import reverse
+from django.urls import reverse
 
 from .models import Invoice
 from .forms import InvoiceForm
@@ -47,6 +47,7 @@ def edit(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, 'تم تعديل الفاتورة بنجاح.')
+            return redirect(reverse('edit', args=[pk]))
     else:
         form = InvoiceForm(instance=invoice)
 
