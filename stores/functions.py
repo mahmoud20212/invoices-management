@@ -63,6 +63,7 @@ def handle_excel_file(request, store):
             date_string = str(row_dict['DATE'])
             input_datetime = datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S")
             output_date_string = input_datetime.strftime("%Y-%m-%d")
+            output_time_string = input_datetime.strftime("%H:%M:%S")
             
             invoices.append(
                 Invoice(
@@ -72,6 +73,7 @@ def handle_excel_file(request, store):
                     name = name,
                     mobile_number = mobile_number,
                     invoice_date = output_date_string,
+                    invoice_time = output_time_string,
                     address_one = None,
                     address_two = None,
                     city = None,

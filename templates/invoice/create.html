@@ -22,8 +22,8 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="name" class="form-label"><i class="fa-solid fa-user"></i> الإسم</label>
-                <input type="text" name="name" class="form-control {% if form.name.errors %} is-invalid {% endif %}" {% if form.name.value %} value="{{ form.name.value }}" {% endif %} id="name">
+                <label for="{{ form.name.id_for_label }}" class="form-label"><i class="fa-solid fa-user"></i> الإسم</label>
+                {{ form.name }}
                 {% if form.name.errors %}
                     {% for error in form.name.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -33,8 +33,8 @@
         </div>
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="address_one" class="form-label"><i class="fa-solid fa-location-dot"></i> العنوان الأول</label>
-                <input type="text" name="address_one" class="form-control {% if form.address_one.errors %} is-invalid {% endif %}" {% if form.address_one.value %} value="{{ form.address_one.value }}" {% endif %} id="address_one">
+                <label for="{{ form.address_one.id_for_label }}" class="form-label"><i class="fa-solid fa-location-dot"></i> العنوان الأول</label>
+                {{ form.address_one }}
                 {% if form.address_one.errors %}
                     {% for error in form.address_one.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -44,8 +44,8 @@
         </div>
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="address_two" class="form-label"><i class="fa-solid fa-location-dot"></i> العنوان الثاني</label>
-                <input type="text" id="address_two" name="address_two" class="form-control {% if form.address_two.errors %} is-invalid {% endif %}" {% if form.address_two.value %} value="{{ form.address_two.value }}" {% endif %}>
+                <label for="{{ form.address_two.id_for_label }}" class="form-label"><i class="fa-solid fa-location-dot"></i> العنوان الثاني</label>
+                {{ form.address_two }}
                 {% if form.address_two.errors %}
                     {% for error in form.address_two.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -57,8 +57,8 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="city" class="form-label"><i class="fa-solid fa-city"></i> المدينة</label>
-                <input type="text" name="city" class="form-control {% if form.city.errors %} is-invalid {% endif %}" {% if form.city.value %} value="{{ form.city.value }}" {% endif %} id="city">
+                <label for="{{ form.city.id_for_label }}" class="form-label"><i class="fa-solid fa-city"></i> المدينة</label>
+                {{ form.city }}
                 {% if form.city.errors %}
                     {% for error in form.city.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -68,8 +68,8 @@
         </div>
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="mobile_number" class="form-label"><i class="fa-solid fa-phone"></i> رقم الهاتف</label>
-                <input type="number" name="mobile_number" class="form-control {% if form.mobile_number.errors %} is-invalid {% endif %}" {% if form.mobile_number.value %} value="{{ form.mobile_number.value }}" {% endif %} id="city">
+                <label for="{{ form.mobile_number.id_for_label }}" class="form-label"><i class="fa-solid fa-phone"></i> رقم الهاتف</label>
+                {{ form.mobile_number }}
                 {% if form.mobile_number.errors %}
                     {% for error in form.mobile_number.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -82,8 +82,8 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="mb-3">
-                <label for="invoice_number" class="form-label"><i class="fa-solid fa-receipt"></i> رقم الفاتورة</label>
-                <input type="number" name="invoice_number" class="form-control {% if form.invoice_number.errors %} is-invalid {% endif %}" {% if form.invoice_number.value %} value="{{ form.invoice_number.value }}" {% endif %} id="invoice_number">
+                <label for="{{ form.invoice_number.id_for_label }}" class="form-label"><i class="fa-solid fa-receipt"></i> رقم الفاتورة</label>
+                {{ form.invoice_number }}
                 {% if form.invoice_number.errors %}
                     {% for error in form.invoice_number.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -112,13 +112,13 @@
         <div class="col-sm-4">
             <div class="mb-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <label for="invoice_date" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الفاتورة</label>
+                    <label for="{{ form.invoice_date.id_for_label }}" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الفاتورة</label>
                     <div class="form-check form-switch">
                         <input name="show_invoice_time" class="form-check-input" type="checkbox" role="switch" id="show_invoice_time" {% if form.show_invoice_time.value %} checked {% endif %}>
                         <label class="form-check-label" for="show_invoice_time">عرض الوقت</label>
                     </div>
                 </div>
-                <input type="date" name="invoice_date" class="form-control {% if form.invoice_date.errors %} is-invalid {% endif %}" {% if form.invoice_date.value %} value="{{ form.invoice_date.value|date:'Y-m-d' }}" {% endif %} id="invoice_date">
+                {{ form.invoice_date }}
                 {% if form.invoice_date.errors %}
                     {% for error in form.invoice_date.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -126,7 +126,7 @@
                 {% endif %}
             </div>
             <div class="mb-3">
-                <input type="time" name="invoice_time" class="form-control {% if form.invoice_time.errors %} is-invalid {% endif %}" {% if form.invoice_time.value %} value="{{ form.invoice_time.value|time:'H:i' }}" {% endif %} id="invoice_time">
+                {{ form.invoice_time }}
                 {% if form.invoice_time.errors %}
                     {% for error in form.invoice_time.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -137,13 +137,13 @@
         <div class="col-sm-4">
             <div class="mb-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <label for="due_date" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الاستحقاق</label>
+                    <label for="{{ form.due_date.id_for_label }}" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ الاستحقاق</label>
                     <div class="form-check form-switch">
                         <input name="show_due_time" class="form-check-input" type="checkbox" role="switch" id="show_due_time" {% if form.show_due_time.value %} checked {% endif %}>
                         <label class="form-check-label" for="show_due_time">عرض الوقت</label>
                     </div>
                 </div>
-                <input type="date" name="due_date" class="form-control {% if form.due_date.errors %} is-invalid {% endif %}" {% if form.due_date.value %} value="{{ form.due_date.value|date:'Y-m-d' }}" {% endif %} id="due_date">
+                {{ form.due_date }}
                 {% if form.due_date.errors %}
                     {% for error in form.due_date.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -151,7 +151,7 @@
                 {% endif %}
             </div>
             <div class="mb-3">
-                <input type="time" name="due_time" class="form-control {% if form.due_time.errors %} is-invalid {% endif %}" {% if form.due_time.value %} value="{{ form.due_time.value|time:'H:i' }}" {% endif %} id="due_time">
+                {{ form.due_time }}
                 {% if form.due_time.errors %}
                     {% for error in form.due_time.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -162,13 +162,13 @@
         <div class="col-sm-4">
             <div class="mb-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <label for="date_of_supply" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ التوريد</label>
+                    <label for="{{ form.date_of_supply.id_for_label }}" class="form-label"><i class="fa-solid fa-calendar-days"></i> تاريخ التوريد</label>
                     <div class="form-check form-switch">
                         <input name="show_time_of_supply" class="form-check-input" type="checkbox" role="switch" id="show_time_of_supply" {% if form.show_time_of_supply.value %} checked {% endif %}>
                         <label class="form-check-label" for="show_time_of_supply">عرض الوقت</label>
                     </div>
                 </div>
-                <input type="date" name="date_of_supply" class="form-control {% if form.date_of_supply.errors %} is-invalid {% endif %}" {% if form.date_of_supply.value %} value="{{ form.date_of_supply.value|date:'Y-m-d' }}" {% endif %} id="date_of_supply">
+                {{ form.date_of_supply }}
                 {% if form.date_of_supply.errors %}
                     {% for error in form.date_of_supply.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
@@ -176,7 +176,7 @@
                 {% endif %}
             </div>
             <div class="mb-3">
-                <input type="time" name="time_of_supply" class="form-control {% if form.time_of_supply.errors %} is-invalid {% endif %}" {% if form.time_of_supply.value %} value="{{ form.time_of_supply.value|time:'H:i' }}" {% endif %} id="time_of_supply">
+                {{ form.time_of_supply }}
                 {% if form.time_of_supply.errors %}
                     {% for error in form.time_of_supply.errors %}
                     <div class="invalid-feedback">{{ error }}</div>

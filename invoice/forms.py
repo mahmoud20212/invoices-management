@@ -2,6 +2,13 @@ from django import forms
 from .models import Invoice
 
 class InvoiceForm(forms.ModelForm):
+    invoice_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    due_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    date_of_supply = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    due_time = forms.TimeField(required=False, widget=forms.TimeInput(attrs={'type': 'time'}))
+    invoice_time = forms.TimeField(required=False, widget=forms.TimeInput(attrs={'type': 'time'}))
+    time_of_supply = forms.TimeField(required=False, widget=forms.TimeInput(attrs={'type': 'time'}))
+
     class Meta:
         model = Invoice
         fields = [

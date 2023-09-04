@@ -48,6 +48,9 @@ def edit(request, pk):
             form.save()
             messages.success(request, 'تم تعديل الفاتورة بنجاح.')
             return redirect(reverse('edit', args=[pk]))
+        else:
+            for field in form.errors:
+                form[field].field.widget.attrs['class'] += ' is-invalid'
     else:
         form = InvoiceForm(instance=invoice)
 
